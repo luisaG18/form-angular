@@ -1,0 +1,150 @@
+<!-- Sección principal -->
+<main class="main-container">
+  <!-- Titulo principal -->
+  <h2>Registro cliente</h2>
+  <!-- Contenedor del form -->
+  <form
+    class="form-container"
+    #clientForm="ngForm"
+    (ngSubmit)="submitForm(clientForm)"
+  >
+    <!-- Contenedor label e input nombre de la empresa -->
+    <div class="form-container__item">
+      <label for="companyName">Nombre empresa *</label>
+      <input
+        appInputFormCustom
+        id="companyName"
+        name="companyName"
+        type="text"
+        placeholder="Nombre de la empresa"
+        required
+        [(ngModel)]="clientInfo.companyName.value"
+        [hasError]="clientInfo.companyName.hasError"
+      />
+    </div>
+    <!-- Contenedor label e input nombre de la empresa -->
+    <!-- TODO: Arreglar los estilos de los options -->
+    <div class="form-container__item">
+      <label for="selectTypePerson">Tipo de persona</label>
+      <select
+        appSelectFormCustom
+        name="selectTypePerson"
+        [(ngModel)]="clientInfo.selectTypePerson"
+      >
+        <option value="physicalPerson">Persona física</option>
+        <option value="moralPerson" selected>Persona moral</option>
+      </select>
+    </div>
+    <!-- Contenedor label e input nombre del cliente -->
+    <div class="form-container__item">
+      <label for="clientName">Nombre cliente *</label>
+      <input
+        appInputFormCustom
+        id="clientName"
+        name="clientName"
+        type="text"
+        placeholder="Nombre del cliente"
+        required
+        [(ngModel)]="clientInfo.clientName.value"
+        [hasError]="clientInfo.clientName.hasError"
+      />
+    </div>
+    <!-- Contenedor label e input apellidos del cliente -->
+    <div class="form-container__item">
+      <label for="clientLastname">Apellidos del cliente</label>
+      <input
+        appInputFormCustom
+        id="clientLastname"
+        name="clientLastname"
+        type="text"
+        placeholder="Apellidos del cliente"
+        [(ngModel)]="clientInfo.clientLastname.value"
+        [hasError]="clientInfo.clientLastname.hasError"
+      />
+    </div>
+    <!-- Contenedor label e input teléfono -->
+    <div class="form-container__item">
+      <label for="phoNenumber">Teléfono *</label>
+      <input
+        appInputFormCustom
+        id="phoneNumber"
+        name="phoneNumber"
+        type="text"
+        placeholder="Número de teléfono"
+        required
+        [(ngModel)]="clientInfo.phoneNumber.value"
+        [hasError]="clientInfo.phoneNumber.hasError"
+      />
+    </div>
+    <!-- Contenedor label e input país -->
+    <div class="form-container__item">
+      <label for="country">País *</label>
+      <input
+        appInputFormCustom
+        id="country"
+        name="country"
+        type="text"
+        placeholder="País"
+        required
+        [(ngModel)]="clientInfo.country.value"
+        [hasError]="clientInfo.country.hasError"
+      />
+    </div>
+    <!-- Contenedor label e input ciudad -->
+    <div class="form-container__item">
+      <label for="city">Ciudad</label>
+      <input
+        appInputFormCustom
+        id="city"
+        name="city"
+        type="text"
+        placeholder="Ciudad"
+        [(ngModel)]="clientInfo.city.value"
+        [hasError]="clientInfo.city.hasError"
+      />
+    </div>
+    <!-- Contenedor label e input estado -->
+    <div class="form-container__item">
+      <label for="state">Estado</label>
+      <input
+        appInputFormCustom
+        id="state"
+        name="state"
+        type="text"
+        placeholder="Estado"
+        [(ngModel)]="clientInfo.state.value"
+        [hasError]="clientInfo.state.hasError"
+      />
+    </div>
+    <!-- TODO: Hacer checkboz -->
+    <!-- Contenedor label e input checkbox suscripción -->
+    <div>
+      <input
+        name="checkboxSubscription"
+        id="checkboxSubscription"
+        type="checkbox"
+        [(ngModel)]="clientInfo.checkBox"
+      />
+      <label for="checkboxSubscription">Quiero suscribirme al newsletter</label>
+    </div>
+    <!-- Contenedor label e input correo electronico -->
+    <div class="form-container__item">
+      <label for="email">Correo electrónico</label>
+      <input
+        appInputFormCustom
+        [disabled]="!clientInfo.checkBox"
+        id="email"
+        name="email"
+        type="email"
+        placeholder="Correo electrónico"
+        pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"
+        [(ngModel)]="clientInfo.email.value"
+        [hasError]="clientInfo.email.hasError"
+      />
+    </div>
+    <!-- Contenedor botón registrarse -->
+    <div class="form-container__button">
+      <button appBtnprimary type="submit">Registrarse</button>
+    </div>
+  </form>
+</main>

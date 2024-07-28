@@ -1,0 +1,21 @@
+.main-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.form-container {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+
+  &__item {
+    display: flex;
+    gap: 15px;
+    flex-direction: column;
+  }
+
+  &__button {
+    text-align: center;
+  }
+}
