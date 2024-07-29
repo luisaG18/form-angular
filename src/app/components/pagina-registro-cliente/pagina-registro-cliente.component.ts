@@ -39,7 +39,7 @@ export class PaginaRegistroClienteComponent {
    * @param form Variable del formulario
    */
   submitForm(form: NgForm): void {
-    // Limpiamos el arreglo de this.errorMessage
+    // Limpiamos el arreglo de errores
     this.arrayErrors = [];
     // Validamos si el formulario es valido, es decir, no tiene errores
     if (form.valid) {
@@ -64,13 +64,12 @@ export class PaginaRegistroClienteComponent {
         this.arrayClients.push(objectClient);
         // Cambiamos el valor de la variable isLoading
         this.isLoading = false;
-        // Limpiamos el formulario
-        form.reset();
-        // Inicializamos nuevamente el elemento del selectTypePerson
-        this.clientInfo.selectTypePerson.value = 'Persona fisica';
+        // Limpiamos el formulario e inicializamos nuevamente el elemento del selectTypePerson
+        form.reset({ selectTypePerson: 'Persona fisica' });
       }, 2000);
     } else {
-      // Recorremos el objeto de forms.controls para acceder a las llaves que son los nombres de los elementos
+      // Recorremos el objeto de forms.controls para acceder a las llaves
+      // que son los nombres de los elementos
       for (const info in form.controls) {
         // Variable para guardar el valor de la propiedad invalid del elemento
         let invalidControls = form.controls[info].invalid;
@@ -91,6 +90,8 @@ export class PaginaRegistroClienteComponent {
             // Le agregamos el objeto creado al array de errores
             this.arrayErrors.push(objectError);
           }
+        } else {
+          this.clientInfo[info].hasError = false;
         }
       }
     }
