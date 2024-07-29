@@ -20,6 +20,7 @@
         required
         [(ngModel)]="clientInfo.companyName.value"
         [hasError]="clientInfo.companyName.hasError"
+        [disabled]="isLoading"
       />
     </div>
     <!-- Contenedor label e input nombre de la empresa -->
@@ -29,10 +30,11 @@
       <select
         appSelectFormCustom
         name="selectTypePerson"
-        [(ngModel)]="clientInfo.selectTypePerson"
+        [(ngModel)]="clientInfo.selectTypePerson.value"
+        [disabled]="isLoading"
       >
-        <option value="physicalPerson">Persona física</option>
-        <option value="moralPerson">Persona moral</option>
+        <option value="Persona fisica">Persona física</option>
+        <option value="Persona moral">Persona moral</option>
       </select>
     </div>
     <!-- Contenedor label e input nombre del cliente -->
@@ -47,6 +49,7 @@
         required
         [(ngModel)]="clientInfo.clientName.value"
         [hasError]="clientInfo.clientName.hasError"
+        [disabled]="isLoading"
       />
     </div>
     <!-- Contenedor label e input apellidos del cliente -->
@@ -60,6 +63,7 @@
         placeholder="Apellidos del cliente"
         [(ngModel)]="clientInfo.clientLastname.value"
         [hasError]="clientInfo.clientLastname.hasError"
+        [disabled]="isLoading"
       />
     </div>
     <!-- Contenedor label e input teléfono -->
@@ -76,6 +80,7 @@
         required
         [(ngModel)]="clientInfo.phoneNumber.value"
         [hasError]="clientInfo.phoneNumber.hasError"
+        [disabled]="isLoading"
       />
     </div>
     <!-- Contenedor label e input país -->
@@ -90,6 +95,7 @@
         required
         [(ngModel)]="clientInfo.country.value"
         [hasError]="clientInfo.country.hasError"
+        [disabled]="isLoading"
       />
     </div>
     <!-- Contenedor label e input ciudad -->
@@ -103,6 +109,7 @@
         placeholder="Ciudad"
         [(ngModel)]="clientInfo.city.value"
         [hasError]="clientInfo.city.hasError"
+        [disabled]="isLoading"
       />
     </div>
     <!-- Contenedor label e input estado -->
@@ -116,6 +123,7 @@
         placeholder="Estado"
         [(ngModel)]="clientInfo.state.value"
         [hasError]="clientInfo.state.hasError"
+        [disabled]="isLoading"
       />
     </div>
     <!-- TODO: Hacer checkboz -->
@@ -125,7 +133,8 @@
         name="checkboxSubscription"
         id="checkboxSubscription"
         type="checkbox"
-        [(ngModel)]="clientInfo.checkBox"
+        [(ngModel)]="clientInfo.checkBox.value"
+        [disabled]="isLoading"
       />
       <label for="checkboxSubscription">Quiero suscribirme al newsletter</label>
     </div>
@@ -134,7 +143,7 @@
       <label for="email">Correo electrónico</label>
       <input
         appInputFormCustom
-        [disabled]="!clientInfo.checkBox"
+        [disabled]="!clientInfo.checkBox.value"
         id="email"
         name="email"
         type="email"
@@ -142,6 +151,7 @@
         pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"
         [(ngModel)]="clientInfo.email.value"
         [hasError]="clientInfo.email.hasError"
+        [required]="clientInfo.checkBox.value"
       />
     </div>
     <!-- Contenedor botón registrarse -->
@@ -151,13 +161,38 @@
       </button>
     </div>
   </form>
-  <!-- Sección tabla de usuarios registrados -->
-  <table>
+  <!-- Mensaje de error -->
+  <ul *ngIf="arrayInputErrors.length" class="message-error">
+    <li *ngFor="let input of arrayInputErrors">
+      Error en el input {{ input.nameInput }} debido a que tiene el siguiente
+      error: {{ input.errors }}
+    </li>
+  </ul>
+  <!-- Tabla de clientes registrados -->
+  <table *ngIf="arrayClients.length">
     <tr>
       <th>Identificador cliente</th>
+      <th>Nombre de la empresa</th>
+      <th>Tipo de persona</th>
+      <th>Nombre del cliente</th>
+      <th>Apellidos del cliente</th>
+      <th>Télefono</th>
+      <th>País</th>
+      <th>Ciudad</th>
+      <th>Estado</th>
+      <th>Correo electrónico</th>
     </tr>
-    <tr>
-      <td *ngFor="let id of arrayClients">{{ id.identifier }}</td>
+    <tr *ngFor="let client of arrayClients">
+      <td>{{ client.identifier }}</td>
+      <td>{{ client.companyName }}</td>
+      <td>{{ client.selectTypePerson }}</td>
+      <td>{{ client.clientName }}</td>
+      <td>{{ client.clientLastname }}</td>
+      <td>{{ client.phoneNumber }}</td>
+      <td>{{ client.country }}</td>
+      <td>{{ client.city }}</td>
+      <td>{{ client.state }}</td>
+      <td>{{ client.email }}</td>
     </tr>
   </table>
 </main>

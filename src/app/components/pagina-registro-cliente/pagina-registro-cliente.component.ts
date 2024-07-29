@@ -17,11 +17,13 @@ export class PaginaRegistroClienteComponent {
   arrayClients: any[] = [];
   // Variable para el estado cargando
   isLoading: boolean = false;
+  // array para guardar los nombre de los inputs con errores
+  arrayInputErrors: any = [];
 
   // Objeto del formulario cliente
   clientInfo: any = {
     companyName: { value: '', hasError: false },
-    selectTypePerson: 'physicalPerson',
+    selectTypePerson: { value: 'Persona fisica', hasError: false },
     clientName: { value: '', hasError: false },
     clientLastname: { value: '', hasError: false },
     phoneNumber: { value: '', hasError: false },
@@ -38,31 +40,34 @@ export class PaginaRegistroClienteComponent {
    */
   submitForm(form: NgForm): void {
     // Validamos si el formulario es valido, es decir, no tiene errores
+    this.arrayInputErrors = [];
     if (form.valid) {
       this.isLoading = true;
       let objectClient: any = {};
       for (const info in this.clientInfo) {
         objectClient[info] = this.clientInfo[info].value;
+        this.clientInfo[info].hasError = false;
       }
       objectClient.identifier = Math.random();
       setTimeout(() => {
         this.arrayClients.push(objectClient);
         this.isLoading = false;
-        console.log(objectClient);
         form.reset();
+        this.clientInfo.selectTypePerson.value = 'Persona fisica';
       }, 2000);
     } else {
-      let array = [];
       for (const info in form.controls) {
         let invalidControls = form.controls[info].invalid;
+        let objectError: any = {};
         if (invalidControls == true) {
           this.clientInfo[info].hasError = true;
-          array.push(info);
+          objectError.nameInput = info;
+          let typeError = form.controls[info].errors;
+          for (let error in typeError) {
+            objectError.errors = error;
+            this.arrayInputErrors.push(objectError);
+          }
         }
-      }
-      console.log(array);
-      if (array.includes('companyName')) {
-        console.log('true');
       }
     }
   }

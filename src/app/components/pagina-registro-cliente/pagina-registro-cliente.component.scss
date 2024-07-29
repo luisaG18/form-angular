@@ -16,6 +16,23 @@
   }
 
   &__button {
-    text-align: center;
+    display: flex;
+    justify-content: center;
+  }
+}
+
+.message-error {
+  text-align: left;
+}
+
+table {
+  margin-top: 20px;
+  border: 1px solid black;
+  border-collapse: collapse;
+  th,
+  td {
+    border: 1px solid black;
+    border-collapse: collapse;
+    padding: 10px;
   }
 }

@@ -40,7 +40,7 @@ export class InputFormCustomDirective implements OnInit, OnChanges {
 
     //Estilos del placeHolder
     // Definimos el color del placeholder
-    let colorPlaceholder = 'red';
+    let colorPlaceholder = '#B9B9B9';
     // Creamos el elemento style para colocarle código CSS nativo
     const styleElement = document.createElement('style');
     // Creamos una clase única para agregarsela al input
