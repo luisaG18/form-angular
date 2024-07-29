@@ -1,9 +1,11 @@
+// Estilos para el contenedor principal
 .main-container {
   display: flex;
   flex-direction: column;
   align-items: center;
 }
 
+// Estilos para el form
 .form-container {
   display: flex;
   flex-direction: column;
@@ -21,10 +23,12 @@
   }
 }
 
+// Estilos para el mensaje de error
 .message-error {
   text-align: left;
 }
 
+// Estilos de la tabla
 table {
   margin-top: 20px;
   border: 1px solid black;

@@ -10,7 +10,9 @@
   >
     <!-- Contenedor label e input nombre de la empresa -->
     <div class="form-container__item">
+      <!-- label del input nombre de la empresa -->
       <label for="companyName">Nombre empresa *</label>
+      <!-- elemento input nombre de la empresa -->
       <input
         appInputFormCustom
         id="companyName"
@@ -23,23 +25,27 @@
         [disabled]="isLoading"
       />
     </div>
-    <!-- Contenedor label e input nombre de la empresa -->
-    <!-- TODO: Arreglar los estilos de los options -->
+    <!-- Contenedor label e input tipo de persona -->
     <div class="form-container__item">
+      <!-- label del input tipo de persona -->
       <label for="selectTypePerson">Tipo de persona</label>
+      <!-- elemento select tipo de persona -->
       <select
         appSelectFormCustom
         name="selectTypePerson"
         [(ngModel)]="clientInfo.selectTypePerson.value"
         [disabled]="isLoading"
       >
+        <!-- TODO: Arreglar los estilos de los options -->
         <option value="Persona fisica">Persona física</option>
         <option value="Persona moral">Persona moral</option>
       </select>
     </div>
     <!-- Contenedor label e input nombre del cliente -->
     <div class="form-container__item">
+      <!-- label del input nombre del cliente -->
       <label for="clientName">Nombre cliente *</label>
+      <!-- elemento input nombre del cliente -->
       <input
         appInputFormCustom
         id="clientName"
@@ -54,7 +60,9 @@
     </div>
     <!-- Contenedor label e input apellidos del cliente -->
     <div class="form-container__item">
+      <!-- label del input apellidos del cliente -->
       <label for="clientLastname">Apellidos del cliente</label>
+      <!-- elemento input apellidos del cliente -->
       <input
         appInputFormCustom
         id="clientLastname"
@@ -68,7 +76,9 @@
     </div>
     <!-- Contenedor label e input teléfono -->
     <div class="form-container__item">
-      <label for="phoNenumber">Teléfono *</label>
+      <!-- label del input telefono -->
+      <label for="phoneNumber">Teléfono *</label>
+      <!-- elemento input telefono -->
       <input
         appInputFormCustom
         id="phoneNumber"
@@ -85,7 +95,9 @@
     </div>
     <!-- Contenedor label e input país -->
     <div class="form-container__item">
+      <!-- label del input pais -->
       <label for="country">País *</label>
+      <!-- elemento input pais -->
       <input
         appInputFormCustom
         id="country"
@@ -100,7 +112,9 @@
     </div>
     <!-- Contenedor label e input ciudad -->
     <div class="form-container__item">
+      <!-- label del input ciudad -->
       <label for="city">Ciudad</label>
+      <!-- elemento input ciudad -->
       <input
         appInputFormCustom
         id="city"
@@ -114,7 +128,9 @@
     </div>
     <!-- Contenedor label e input estado -->
     <div class="form-container__item">
+      <!-- label del input estado -->
       <label for="state">Estado</label>
+      <!-- elemento input estado -->
       <input
         appInputFormCustom
         id="state"
@@ -126,9 +142,9 @@
         [disabled]="isLoading"
       />
     </div>
-    <!-- TODO: Hacer checkboz -->
     <!-- Contenedor label e input checkbox suscripción -->
     <div>
+      <!-- elemento input checkbox suscripcion -->
       <input
         name="checkboxSubscription"
         id="checkboxSubscription"
@@ -136,11 +152,14 @@
         [(ngModel)]="clientInfo.checkBox.value"
         [disabled]="isLoading"
       />
+      <!-- label del checkbox suscripcion -->
       <label for="checkboxSubscription">Quiero suscribirme al newsletter</label>
     </div>
     <!-- Contenedor label e input correo electronico -->
     <div class="form-container__item">
+      <!-- label del input correo -->
       <label for="email">Correo electrónico</label>
+      <!-- elemento input correo -->
       <input
         appInputFormCustom
         [disabled]="!clientInfo.checkBox.value"
@@ -156,21 +175,25 @@
     </div>
     <!-- Contenedor botón registrarse -->
     <div class="form-container__button">
+      <!-- elemento boton -->
       <button appBtnprimary type="submit" [isLoading]="isLoading">
         {{ isLoading ? "Registrando" : "Registrarse" }}
       </button>
     </div>
   </form>
-  <!-- Mensaje de error -->
-  <ul *ngIf="arrayInputErrors.length" class="message-error">
-    <li *ngFor="let input of arrayInputErrors">
+  <!-- Lista con los mensajes de error -->
+  <ul *ngIf="arrayErrors.length" class="message-error">
+    <!-- mensaje de error -->
+    <li *ngFor="let input of arrayErrors">
       Error en el input {{ input.nameInput }} debido a que
-      {{ messageError(input.error) }}
+      {{ errorMessage(input.error) }}
     </li>
   </ul>
   <!-- Tabla de clientes registrados -->
   <table *ngIf="arrayClients.length">
+    <!-- Contenedor de los encabezados de la tabla -->
     <tr>
+      <!-- Encabezados de la tabla -->
       <th>Identificador cliente</th>
       <th>Nombre de la empresa</th>
       <th>Tipo de persona</th>
@@ -182,7 +205,9 @@
       <th>Estado</th>
       <th>Correo electrónico</th>
     </tr>
+    <!-- Contenedor de las celdas de la tabla -->
     <tr *ngFor="let client of arrayClients">
+      <!-- Celdas de la tabla -->
       <td>{{ client.identifier }}</td>
       <td>{{ client.companyName }}</td>
       <td>{{ client.selectTypePerson }}</td>

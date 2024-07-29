@@ -17,8 +17,8 @@ export class PaginaRegistroClienteComponent {
   arrayClients: any[] = [];
   // Variable para el estado cargando
   isLoading: boolean = false;
-  // array para guardar los nombre de los inputs con errores
-  arrayInputErrors: any = [];
+  // array para guardar los nombres de los inputs con errores
+  arrayErrors: any = [];
 
   // Objeto del formulario cliente
   clientInfo: any = {
@@ -34,50 +34,81 @@ export class PaginaRegistroClienteComponent {
     email: { value: '', hasError: false },
   };
 
-  messageError(error: string) {
+  /**
+   * Función que se ejecuta al enviar el formulario
+   * @param form Variable del formulario
+   */
+  submitForm(form: NgForm): void {
+    // Limpiamos el arreglo de this.errorMessage
+    this.arrayErrors = [];
+    // Validamos si el formulario es valido, es decir, no tiene errores
+    if (form.valid) {
+      // Cambiamos el valor de la variable isLoading
+      this.isLoading = true;
+      // Creamos un objeto cliente para guardarlo en el array de clientes
+      let objectClient: any = {};
+      // Recorremos el objeto clientInfo para acceder a sus llaves
+      for (const info in this.clientInfo) {
+        // Formamos el objeto objectClient con su llave y valor
+        objectClient[info] = this.clientInfo[info].value;
+        // Limpiamos la prop de hasError
+        this.clientInfo[info].hasError = false;
+      }
+      // Asignamos una clave unica al cliente
+      objectClient.identifier = Math.random();
+      /**
+       * Función setTimeout para simular dos segundos de espera
+       */
+      setTimeout(() => {
+        // Agregamos el objectClient creado a el arreglo de clientes
+        this.arrayClients.push(objectClient);
+        // Cambiamos el valor de la variable isLoading
+        this.isLoading = false;
+        // Limpiamos el formulario
+        form.reset();
+        // Inicializamos nuevamente el elemento del selectTypePerson
+        this.clientInfo.selectTypePerson.value = 'Persona fisica';
+      }, 2000);
+    } else {
+      // Recorremos el objeto de forms.controls para acceder a las llaves que son los nombres de los elementos
+      for (const info in form.controls) {
+        // Variable para guardar el valor de la propiedad invalid del elemento
+        let invalidControls = form.controls[info].invalid;
+        // Creamos el objeto de error que se almacenará en el array de errores
+        let objectError: any = {};
+        // Validamos si el invalid es true
+        if (invalidControls == true) {
+          // Le asignamos true a la prop de hasError
+          this.clientInfo[info].hasError = true;
+          // Le asignamos el nombre del input que tiene el error
+          objectError.nameInput = info;
+          // Le asignamos a la variable typeError los errors del elemento
+          let typeError = form.controls[info].errors;
+          // Recorremos el objeto de los tipos de errores para obtener sus llaves
+          for (let error in typeError) {
+            // Le asignamos el nombre de la llave a la propiedad error del objeto
+            objectError.error = error;
+            // Le agregamos el objeto creado al array de errores
+            this.arrayErrors.push(objectError);
+          }
+        }
+      }
+    }
+  }
+
+  /**
+   * Función para mostrar el mensaje de error
+   * @param error Variable del tipo de error (required, pattern...)
+   * @returns
+   */
+  errorMessage(error: string) {
+    // Validamos que tipo de error es
     if (error === 'minlength') {
       return 'el campo es de minimo 10 digitos';
     } else if (error === 'pattern') {
       return 'el correo debe ser valido';
     } else {
       return 'el campo es obligatorio';
-    }
-  }
-  /**
-   * Función que se ejecuta al enviar el formulario
-   * @param form Variable del formulario
-   */
-  submitForm(form: NgForm): void {
-    // Validamos si el formulario es valido, es decir, no tiene errores
-    this.arrayInputErrors = [];
-    if (form.valid) {
-      this.isLoading = true;
-      let objectClient: any = {};
-      for (const info in this.clientInfo) {
-        objectClient[info] = this.clientInfo[info].value;
-        this.clientInfo[info].hasError = false;
-      }
-      objectClient.identifier = Math.random();
-      setTimeout(() => {
-        this.arrayClients.push(objectClient);
-        this.isLoading = false;
-        form.reset();
-        this.clientInfo.selectTypePerson.value = 'Persona fisica';
-      }, 2000);
-    } else {
-      for (const info in form.controls) {
-        let invalidControls = form.controls[info].invalid;
-        let objectError: any = {};
-        if (invalidControls == true) {
-          this.clientInfo[info].hasError = true;
-          objectError.nameInput = info;
-          let typeError = form.controls[info].errors;
-          for (let error in typeError) {
-            objectError.error = error;
-            this.arrayInputErrors.push(objectError);
-          }
-        }
-      }
     }
   }
 }
