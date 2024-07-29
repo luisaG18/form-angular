@@ -39,11 +39,26 @@ export class InputFormCustomDirective implements OnInit, OnChanges {
     this.renderer.setStyle(this.nativeElement, 'font-size', '16px');
 
     //Estilos del placeHolder
-    this.renderer.setStyle(this.nativeElement, '::placeholder', 'color: #FF0707');
-    this.renderer.setStyle(this.nativeElement, '::-webkit-input-placeholder', 'color: #FF0707');
-    this.renderer.setStyle(this.nativeElement, ':-ms-input-placeholder', 'color: #FF0707');
-    this.renderer.setStyle(this.nativeElement, '::-moz-input-placeholder', 'color: #FF0707');
-    // this.renderer.addClass(this.nativeElement, 'input-placeholder');
+    // Definimos el color del placeholder
+    let colorPlaceholder = 'red';
+    // Creamos el elemento style para colocarle código CSS nativo
+    const styleElement = document.createElement('style');
+    // Creamos una clase única para agregarsela al input
+    const uniqueClass = 'placeholder-' + Date.now(); //Esto genera una clase única para evitar conflictos
+    // Insertamos el código CSS sobre el HTML con los cambios
+    // ::-webkit-input-placeholder -> Chrome, Opera y Safari
+    // :-ms-input-placeholder -> IE 10+ y Edge
+    // ::-moz-input-placeholder -> Firefox 19+
+    styleElement.innerHTML = `
+      .${uniqueClass}::placeholder {color: ${colorPlaceholder}}
+      .${uniqueClass}::-webkit-input-placeholder {color: ${colorPlaceholder}}
+      .${uniqueClass}:-ms-input-placeholder {color: ${colorPlaceholder}}
+      .${uniqueClass}::-moz-input-placeholder {color: ${colorPlaceholder}}
+    `;
+    // Insertamos en el HTML el elemento style
+    document.head.appendChild(styleElement);
+    // Agregamos la clase unica al input
+    this.renderer.addClass(this.nativeElement, uniqueClass);
 
     // Estados del input
     // Mouseover

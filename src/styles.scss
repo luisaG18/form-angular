@@ -22,13 +22,3 @@
     transform: rotate(360deg);
   }
 }
-
-// Estilos para el placeholder
-.input-placeholder {
-  &::placeholder,
-  &::-webkit-input-placeholder,
-  &:-ms-input-placeholder,
-  &::-moz-input-placeholder {
-    color: red;
-  }
-}

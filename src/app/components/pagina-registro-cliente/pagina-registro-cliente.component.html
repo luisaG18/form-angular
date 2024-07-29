@@ -32,7 +32,7 @@
         [(ngModel)]="clientInfo.selectTypePerson"
       >
         <option value="physicalPerson">Persona física</option>
-        <option value="moralPerson" selected>Persona moral</option>
+        <option value="moralPerson">Persona moral</option>
       </select>
     </div>
     <!-- Contenedor label e input nombre del cliente -->
@@ -71,6 +71,8 @@
         name="phoneNumber"
         type="text"
         placeholder="Número de teléfono"
+        minlength="10"
+        maxlength="10"
         required
         [(ngModel)]="clientInfo.phoneNumber.value"
         [hasError]="clientInfo.phoneNumber.hasError"
@@ -144,7 +146,18 @@
     </div>
     <!-- Contenedor botón registrarse -->
     <div class="form-container__button">
-      <button appBtnprimary type="submit">Registrarse</button>
+      <button appBtnprimary type="submit" [isLoading]="isLoading">
+        {{ isLoading ? "Registrando" : "Registrarse" }}
+      </button>
     </div>
   </form>
+  <!-- Sección tabla de usuarios registrados -->
+  <table>
+    <tr>
+      <th>Identificador cliente</th>
+    </tr>
+    <tr>
+      <td *ngFor="let id of arrayClients">{{ id.identifier }}</td>
+    </tr>
+  </table>
 </main>
