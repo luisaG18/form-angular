@@ -164,8 +164,8 @@
   <!-- Mensaje de error -->
   <ul *ngIf="arrayInputErrors.length" class="message-error">
     <li *ngFor="let input of arrayInputErrors">
-      Error en el input {{ input.nameInput }} debido a que tiene el siguiente
-      error: {{ input.errors }}
+      Error en el input {{ input.nameInput }} debido a que
+      {{ messageError(input.error) }}
     </li>
   </ul>
   <!-- Tabla de clientes registrados -->

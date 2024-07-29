@@ -34,6 +34,15 @@ export class PaginaRegistroClienteComponent {
     email: { value: '', hasError: false },
   };
 
+  messageError(error: string) {
+    if (error === 'minlength') {
+      return 'el campo es de minimo 10 digitos';
+    } else if (error === 'pattern') {
+      return 'el correo debe ser valido';
+    } else {
+      return 'el campo es obligatorio';
+    }
+  }
   /**
    * Función que se ejecuta al enviar el formulario
    * @param form Variable del formulario
@@ -64,7 +73,7 @@ export class PaginaRegistroClienteComponent {
           objectError.nameInput = info;
           let typeError = form.controls[info].errors;
           for (let error in typeError) {
-            objectError.errors = error;
+            objectError.error = error;
             this.arrayInputErrors.push(objectError);
           }
         }
