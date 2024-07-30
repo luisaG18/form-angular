@@ -1,0 +1,19 @@
+<div class="custom-select" (click)="onSelectClick($event)">
+  {{ selectedOption }}
+  <div class="custom-select__options" *ngIf="optionsVisible">
+    <div
+      class="custom-select__option"
+      (click)="onOptionClick(option)"
+      *ngFor="let option of arrayOptions"
+    >
+      {{ option }}
+    </div>
+  </div>
+</div>
+<!-- <select [value]="selectedOption" (change)="onSelectChange($event)">
+  <ng-container>
+    <option *ngFor="let option of arrayOptions" [value]="option">
+      {{ option }}
+    </option>
+  </ng-container>
+</select> -->

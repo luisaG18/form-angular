@@ -4,11 +4,12 @@ import { BtnprimaryDirective } from '../../directivas/btnprimary.directive';
 import { SelectFormCustomDirective } from '../../directivas/select-form-custom.directive';
 import { FormsModule, NgForm } from '@angular/forms';
 import { CommonModule } from '@angular/common';
+import { SelectPersonalizadoComponent } from '../select-personalizado/select-personalizado.component';
 
 @Component({
   selector: 'app-pagina-registro-cliente',
   standalone: true,
-  imports: [InputFormCustomDirective, BtnprimaryDirective, SelectFormCustomDirective, FormsModule, CommonModule],
+  imports: [InputFormCustomDirective, BtnprimaryDirective, SelectFormCustomDirective, FormsModule, CommonModule, SelectPersonalizadoComponent],
   templateUrl: './pagina-registro-cliente.component.html',
   styleUrl: './pagina-registro-cliente.component.scss',
 })
@@ -19,6 +20,7 @@ export class PaginaRegistroClienteComponent {
   isLoading: boolean = false;
   // array para guardar los nombres de los inputs con errores
   arrayErrors: any = [];
+  initialSelectedOption = 'Persona fisica';
 
   // Objeto del formulario cliente
   clientInfo: any = {
@@ -34,6 +36,9 @@ export class PaginaRegistroClienteComponent {
     email: { value: '', hasError: false },
   };
 
+  onSelectionChange(selectedValue: string) {
+    console.log('Selected Value:', selectedValue);
+  }
   /**
    * Función que se ejecuta al enviar el formulario
    * @param form Variable del formulario

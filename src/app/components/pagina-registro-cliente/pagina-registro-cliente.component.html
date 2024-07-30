@@ -30,16 +30,22 @@
       <!-- label del input tipo de persona -->
       <label for="selectTypePerson">Tipo de persona</label>
       <!-- elemento select tipo de persona -->
-      <select
+      <!-- <select
         appSelectFormCustom
         name="selectTypePerson"
         [(ngModel)]="clientInfo.selectTypePerson.value"
         [disabled]="isLoading"
       >
-        <!-- TODO: Arreglar los estilos de los options -->
+        <!-- TODO: Arreglar los estilos de los options 
         <option value="Persona fisica">Persona física</option>
         <option value="Persona moral">Persona moral</option>
-      </select>
+      </select> -->
+      <app-select-personalizado
+        [arrayOptions]="['Persona fisica', 'Persona Natural']"
+        [selectedOption]="initialSelectedOption"
+        (selectionChange)="onSelectionChange($event)"
+        >></app-select-personalizado
+      >
     </div>
     <!-- Contenedor label e input nombre del cliente -->
     <div class="form-container__item">

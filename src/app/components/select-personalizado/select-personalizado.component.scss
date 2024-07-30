@@ -1,0 +1,13 @@
+.custom-select {
+  width: 190px; /* 
+  height: 40px; */
+  border-radius: 4px;
+  padding: 8px 12px;
+  color: #5d5d5d;
+  font-size: 16px;
+  border: 1px solid #d6d6d6;
+  &__option {
+    border: 1px solid red;
+    padding: 4px 8px;
+  }
+}
