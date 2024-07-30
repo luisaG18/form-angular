@@ -20,16 +20,6 @@ export class PaginaRegistroClienteComponent {
   isLoading: boolean = false;
   // array para guardar los nombres de los inputs con errores
   arrayErrors: any = [];
-  /* arrayOptions = [
-    {
-      value: 'personaFisica',
-      text: 'Persona Fisica',
-    },
-    {
-      value: 'personaFisica2',
-      text: 'Persona Fisica 2',
-    },
-  ]; */
 
   // Objeto del formulario cliente
   clientInfo: any = {

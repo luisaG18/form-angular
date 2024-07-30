@@ -29,21 +29,10 @@
     <div class="form-container__item">
       <!-- label del input tipo de persona -->
       <label for="selectTypePerson">Tipo de persona</label>
-      <!-- elemento select tipo de persona -->
-      <!-- <select
-        appSelectFormCustom
-        name="selectTypePerson"
-        [(ngModel)]="clientInfo.selectTypePerson.value"
-        [disabled]="isLoading"
-      >
-        <!-- TODO: Arreglar los estilos de los options 
-        <option value="Persona fisica">Persona física</option>
-        <option value="Persona moral">Persona moral</option>
-      </select> -->
+      <!-- comoponente select tipo de persona -->
       <app-select-personalizado
         [arrayOptions]="['Persona Fisica', 'Persona Moral']"
         [(selectedOption)]="clientInfo.selectTypePerson.value"
-        [disabled]="isLoading"
       ></app-select-personalizado>
     </div>
     <!-- Contenedor label e input nombre del cliente -->

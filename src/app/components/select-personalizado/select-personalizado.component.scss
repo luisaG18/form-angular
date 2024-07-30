@@ -11,16 +11,6 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  &::after {
-    position: absolute;
-    content: "";
-    top: 17px;
-    right: 10px;
-    width: 0;
-    height: 0;
-    border: 6px solid transparent;
-    border-color: #414141 transparent transparent transparent;
-  }
   &__options {
     position: absolute;
     left: 0;
@@ -38,5 +28,29 @@
     color: #fff;
     background-color: #3785f7;
     cursor: pointer;
+  }
+  &--open::after {
+    position: absolute;
+    content: "";
+    top: 11px;
+    right: 10px;
+    width: 0;
+    height: 0;
+    border: 6px solid transparent;
+    border-color: transparent transparent #414141 transparent;
+  }
+  &--closed::after {
+    position: absolute;
+    content: "";
+    top: 17px;
+    right: 10px;
+    width: 0;
+    height: 0;
+    border: 6px solid transparent;
+    border-color: #414141 transparent transparent transparent;
+  }
+  &--disabled {
+    pointer-events: none;
+    background-color: red;
   }
 }

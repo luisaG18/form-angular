@@ -1,6 +1,16 @@
-<div class="custom-select" (click)="onSelectClick($event)">
+<!-- Contenedor principal -->
+<div
+  class="custom-select"
+  (click)="onSelectClick($event)"
+  [ngClass]="{
+    'custom-select--open': optionsVisible,
+    'custom-select--closed': !optionsVisible,
+  }"
+>
   {{ selectedOption }}
+  <!-- Contenedor de las opciones -->
   <div class="custom-select__options" *ngIf="optionsVisible">
+    <!-- Opcion del select -->
     <div
       class="custom-select__option"
       (click)="onOptionClick(option)"
@@ -10,10 +20,3 @@
     </div>
   </div>
 </div>
-<!-- <select [value]="selectedOption" (change)="onSelectChange($event)">
-  <ng-container>
-    <option *ngFor="let option of arrayOptions" [value]="option">
-      {{ option }}
-    </option>
-  </ng-container>
-</select> -->
