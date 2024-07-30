@@ -34,17 +34,20 @@ export class SelectPersonalizadoComponent implements OnInit {
    * @param event Parametro evento del evento que recibe
    */
   onSelectClick(event: Event): void {
-    // Ejecutamos la función que cambia el estado de las opciones
-    this.changeOptionsVisible();
-    // Prevenimos que el dropdown se cierre inmediatamente
-    event.stopPropagation();
-    // Validamos si las opciones son visibles
-    if (this.optionsVisible === true) {
-      // Llamamos la función que agrega el evento click
-      this.addListeners();
-    } else {
-      // Removemos ese evento click
-      this.removeListeners();
+    // Validamos si es disabled
+    if (!this.disabled) {
+      // Ejecutamos la función que cambia el estado de las opciones
+      this.changeOptionsVisible();
+      // Prevenimos que el dropdown se cierre inmediatamente
+      event.stopPropagation();
+      // Validamos si las opciones son visibles
+      if (this.optionsVisible === true) {
+        // Llamamos la función que agrega el evento click
+        this.addListeners();
+      } else {
+        // Removemos ese evento click
+        this.removeListeners();
+      }
     }
   }
   /**

@@ -33,6 +33,7 @@
       <app-select-personalizado
         [arrayOptions]="['Persona Fisica', 'Persona Moral']"
         [(selectedOption)]="clientInfo.selectTypePerson.value"
+        [disabled]="isLoading"
       ></app-select-personalizado>
     </div>
     <!-- Contenedor label e input nombre del cliente -->
