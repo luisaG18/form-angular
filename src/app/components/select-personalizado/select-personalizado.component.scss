@@ -1,13 +1,42 @@
 .custom-select {
-  width: 190px; /* 
-  height: 40px; */
+  position: relative;
+  width: 190px;
+  height: 40px;
   border-radius: 4px;
   padding: 8px 12px;
   color: #5d5d5d;
   font-size: 16px;
   border: 1px solid #d6d6d6;
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  &::after {
+    position: absolute;
+    content: "";
+    top: 17px;
+    right: 10px;
+    width: 0;
+    height: 0;
+    border: 6px solid transparent;
+    border-color: #414141 transparent transparent transparent;
+  }
+  &__options {
+    position: absolute;
+    left: 0;
+    top: 39px;
+    width: 100%;
+    background-color: #fff;
+    box-shadow: 3px 3px 9px rgb(175 170 170 / 92%);
+  }
   &__option {
-    border: 1px solid red;
-    padding: 4px 8px;
+    border: 1px solid #d6d6d6;
+    padding: 8px 8px;
+    height: 40px;
+  }
+  &__option:hover {
+    color: #fff;
+    background-color: #3785f7;
+    cursor: pointer;
   }
 }

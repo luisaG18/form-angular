@@ -20,12 +20,21 @@ export class PaginaRegistroClienteComponent {
   isLoading: boolean = false;
   // array para guardar los nombres de los inputs con errores
   arrayErrors: any = [];
-  initialSelectedOption = 'Persona fisica';
+  /* arrayOptions = [
+    {
+      value: 'personaFisica',
+      text: 'Persona Fisica',
+    },
+    {
+      value: 'personaFisica2',
+      text: 'Persona Fisica 2',
+    },
+  ]; */
 
   // Objeto del formulario cliente
   clientInfo: any = {
     companyName: { value: '', hasError: false },
-    selectTypePerson: { value: 'Persona fisica', hasError: false },
+    selectTypePerson: { value: 'Persona Fisica', hasError: false },
     clientName: { value: '', hasError: false },
     clientLastname: { value: '', hasError: false },
     phoneNumber: { value: '', hasError: false },
@@ -36,9 +45,6 @@ export class PaginaRegistroClienteComponent {
     email: { value: '', hasError: false },
   };
 
-  onSelectionChange(selectedValue: string) {
-    console.log('Selected Value:', selectedValue);
-  }
   /**
    * Función que se ejecuta al enviar el formulario
    * @param form Variable del formulario
@@ -71,7 +77,8 @@ export class PaginaRegistroClienteComponent {
         // Cambiamos el valor de la variable isLoading
         this.isLoading = false;
         // Limpiamos el formulario e inicializamos nuevamente el elemento del selectTypePerson
-        form.reset({ selectTypePerson: 'Persona fisica' });
+        form.reset();
+        this.clientInfo.selectTypePerson.value = 'Persona Fisica';
       }, 2000);
     } else {
       // Recorremos el objeto de forms.controls para acceder a las llaves
