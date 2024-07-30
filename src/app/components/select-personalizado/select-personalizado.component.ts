@@ -77,7 +77,6 @@ export class SelectPersonalizadoComponent implements OnInit {
    */
   removeListeners() {
     document.removeEventListener('click', this.handleHide);
-    console.log('remove');
   }
 
   /**
