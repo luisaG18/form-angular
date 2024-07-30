@@ -80,16 +80,18 @@ export class BtnprimaryDirective implements OnInit, OnChanges {
       // Llamamos a la función que deshabilita el botón
       this.disabledButton(this.nativeElement);
     } else {
+      // Llamamos a la función que habilita el botón
+      this.enableButton(this.nativeElement);
       // Validamos si el estado es cargando
       if (this.isLoading) {
+        // Deshabilitamos el botón
+        this.renderer.setAttribute(this.nativeElement, 'disabled', 'true');
         // Llamamos la función que agrega el loader
         this.setLoader(this.nativeElement);
       } else {
         // Llamamos la función que remueve el loader en caso de existir
         this.removeLoader(this.nativeElement);
       }
-      // Llamamos a la función que habilita el botón
-      this.enableButton(this.nativeElement);
     }
   }
 
@@ -102,16 +104,18 @@ export class BtnprimaryDirective implements OnInit, OnChanges {
       // Llamamos a la función que deshabilita el botón
       this.disabledButton(this.nativeElement);
     } else {
+      // Llamamos a la función que habilita el botón
+      this.enableButton(this.nativeElement);
       // Validamos si el estado es cargando
       if (this.isLoading) {
+        // Deshabilitamos el botón
+        this.renderer.setAttribute(this.nativeElement, 'disabled', 'true');
         // Llamamos la función que agrega el loader
         this.setLoader(this.nativeElement);
       } else {
         // Llamamos la función que remueve el loader en caso de existir
         this.removeLoader(this.nativeElement);
       }
-      // Llamamos a la función que habilita el botón
-      this.enableButton(this.nativeElement);
     }
   }
 

@@ -39,6 +39,7 @@ export class PaginaRegistroClienteComponent {
    * @param form Variable del formulario
    */
   submitForm(form: NgForm): void {
+    console.log('click');
     // Limpiamos el arreglo de errores
     this.arrayErrors = [];
     // Validamos si el formulario es valido, es decir, no tiene errores
